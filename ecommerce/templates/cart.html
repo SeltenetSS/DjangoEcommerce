@@ -1,3 +1,18 @@
+{#{% extends 'base.html' %}#}
+{#{% block content %}#}
+{#<h1>Your Cart</h1>#}
+{#<ul>#}
+{#    {% for item in cart_items %}#}
+{#        <li>#}
+{#            <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100">#}
+{#            {{ item.product.name }} - {{ item.qty }} x ${{ item.product.price }} = ${{ item.subtotal }}#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{#<p><b>Total:</b> ${{ total }}</p>#}
+{#{% endblock %}#}
+
+
 {% extends 'base.html' %}
 {% block content %}
 <h1>Your Cart</h1>
@@ -6,6 +21,9 @@
         <li>
             <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100">
             {{ item.product.name }} - {{ item.qty }} x ${{ item.product.price }} = ${{ item.subtotal }}
+
+            <a href="{% url 'update_cart' item.product.id 'increase' %}" class="btn btn-primary">+</a>
+            <a href="{% url 'update_cart' item.product.id 'decrease' %}" class="btn btn-danger">-</a>
         </li>
     {% endfor %}
 </ul>
